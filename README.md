@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Create design system with Storybook and React and publish it to NPM to consume it in other projects as package dependency.
+
+This project shows a minimal Storybook workflow with React, that exposes a simple input component built with styled components.\
+It then uses Babel to transpile and build the project, then is published to NPM to a scoped package.\
+At last, the package can then be used as a dependency in other projects so the components defined here could be used as reusable components.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Usage
 
-In the project directory, you can run:
+To use the project in development (to define and test reusable components using Storybook), run: `npm run storybook`.
 
-### `npm start`
+This will start a local server on port 6006 by default and from there you can view and edit your components through the
+Storybook UI
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Creating a new component
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+In order to define a new component:
+1. Define it in the components folder using the same pattern as the example Input component (`index.js` for the main 
+file and `<component_name>Wrapper.js` for the styled component that applies style to the new component).
+2. Import the component in the file index.js located at the root of src/ folder. Export it as well to be included in
+the published package.
+3. Build the project with `npm run build` to generate the dist folder that will be used by NPM on publish to update the
+package.
 
-### `npm test`
+## Publishing changes to NPM
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In order to pubilsh the new changes to NPM:
+1. Increase the patch version of the project by one to signal NPM about the update (for example if current version is 0.1.5 you 
+have to change it to 0.1.6).
+2. Publish the project to NPM using `npm publish --access=public`
+3. All set here. Now on the projects that consume the package and you wish to see the updates made, you have to update the package by
+running `npm install <package_name>` which will update to the last version.
 
-### `npm run build`
+## Learn more
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Storybook documentation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[Storybook docs](https://storybook.js.org/docs/react/get-started/introduction)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Creating a design system (with component testing, documentation an CI)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Design systems for developers](https://storybook.js.org/tutorials/design-systems-for-developers/react/en/introduction/)
